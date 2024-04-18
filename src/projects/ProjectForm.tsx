@@ -1,3 +1,6 @@
+import {Project} from "./Project";
+
+
 export default function ProjectForm():JSX.Element {
     return (
         <form className="input-group vertical">
