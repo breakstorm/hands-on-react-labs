@@ -1,5 +1,8 @@
 import {Project} from "./Project";
 
+interface ProjectFormProps {
+    project: Project;
+}
 
 export default function ProjectForm():JSX.Element {
     return (
