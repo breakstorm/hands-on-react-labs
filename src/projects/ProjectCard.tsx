@@ -10,18 +10,29 @@ function formatDescription(description: string): string {
 
 export default function ProjectCard(props: ProjectCardProps): JSX.Element {
     const { project } = props;
+
+    function handleEditClick(project: Project):void {
+        console.log('Edit project:', project)
+    }
+
     return (
-            <div className="cols-sm">
-                <div className="card">
-                    <img src={project.imageUrl} alt={project.name}/>
-                    <section className="section dark">
-                        <h5 className="strong">
-                            <strong>{project.name}</strong>
-                        </h5>
-                        <p>{formatDescription(project.description)}</p>
-                        <p>Budget : {project.budget.toLocaleString()}</p>
-                    </section>
-                </div>
+        <div className="cols-sm">
+            <div className="card">
+                <img src={project.imageUrl} alt={project.name}/>
+                <section className="section dark">
+                    <h5 className="strong">
+                        <strong>{project.name}</strong>
+                    </h5>
+                    <p>{formatDescription(project.description)}</p>
+                    <p>Budget : {project.budget.toLocaleString()}</p>
+                    <button className="bordered"
+                      onClick={() => handleEditClick(project)}
+                    >
+                        <span className="icon-edit"></span>
+                        Edit
+                    </button>
+                </section>
             </div>
-    )
+        </div>
+    );
 };
