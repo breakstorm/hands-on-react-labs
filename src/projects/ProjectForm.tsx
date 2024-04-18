@@ -1,15 +1,23 @@
 import {Project} from "./Project";
+import {SyntheticEvent} from "react";
 
 interface ProjectFormProps {
     project: Project;
+    onSave: (project: Project) => void;
     onCancel: () => void;
 }
 
-export default function ProjectForm(props:ProjectFormProps):JSX.Element {
-    const {project, onCancel} = props;
+export default function ProjectForm({project, onSave, onCancel}:ProjectFormProps):JSX.Element {
+    // const {project, onCancel} = props;
+
+
+    const handleSubmit = (event: SyntheticEvent) => {
+        event.preventDefault();
+        onSave(new Project({name: 'Updated Project'}));
+    }
 
     return (
-        <form className="input-group vertical">
+        <form className="input-group vertical" onSubmit={handleSubmit}>
             <label htmlFor="name">Project Name</label>
             <input type="text" name="name" placeholder="enter name"
                 value={project.name}
