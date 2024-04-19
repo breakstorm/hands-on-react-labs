@@ -12,11 +12,25 @@ export default function ProjectsPage() {
     const [currentPage, setCurrentPage] = useState(1);
 
     const saveProject = (project: Project) => {
-        console.log("ProjectsPage ::: saveProject ::: ", project);
-        let updatedprojects = projects.map((p: Project) => {
-            return p.id === project.id ? project : p;
-        })
-        setProjects(updatedprojects);
+        // console.log("ProjectsPage ::: saveProject ::: ", project);
+        // let updatedprojects = projects.map((p: Project) => {
+        //     return p.id === project.id ? project : p;
+        // })
+        // setProjects(updatedprojects);
+
+        projectAPI
+            .put(project)
+            .then((updatedProject) => {
+                let updatedProjects = projects.map((p:Project) => {
+                    return p.id === project.id ? new Project(updatedProject) : p;
+                })
+                setProjects(updatedProjects);
+            })
+            .catch((e) => {
+                if (e instanceof Error) {
+                    setError(e.message);
+                }
+            })
     };
 
     const handleMoreClick = () => {
