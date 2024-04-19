@@ -85,6 +85,19 @@ const projectAPI = {
                 );
             });
     },
+
+    find(id: number) {
+        return fetch(`${url}/${id}`)
+            .then(checkStatus)
+            .then(parseJSON)
+            .then(convertToProjectModel)
+            .catch((error: TypeError) => {
+                console.log('log client error ' + error);
+                throw new Error(
+                    'There was an error retrieving the project. Please try again.'
+                );
+            });
+    }
 };
 
 export {projectAPI};
